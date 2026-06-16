@@ -1,0 +1,9 @@
+{
+  "id": "S_SHADOW_DIVE",
+  "name": "影袭",
+  "effect_type": "damage_mult",
+  "mult": 1.4,
+  "cooldown": 3,
+  "target": "single_enemy",
+  "range": 1
+}

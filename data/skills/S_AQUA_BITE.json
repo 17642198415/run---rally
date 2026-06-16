@@ -1,0 +1,9 @@
+{
+  "id": "S_AQUA_BITE",
+  "name": "水噬",
+  "effect_type": "damage_mult",
+  "mult": 1.2,
+  "cooldown": 2,
+  "target": "single_enemy",
+  "range": 1
+}

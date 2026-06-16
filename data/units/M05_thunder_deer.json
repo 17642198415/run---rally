@@ -1,0 +1,12 @@
+{
+  "id": "M05",
+  "name": "雷角鹿",
+  "element": "thunder",
+  "weapon": "none",
+  "unit_type": "foot",
+  "rarity": "rare",
+  "base_capture_rate": 0.28,
+  "stats": { "hp": 20, "atk": 8, "def": 3, "mov": 5 },
+  "skill_id": "S_THUNDER_CHARGE",
+  "tags": ["meta_unlock_pool"]
+}

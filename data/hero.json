@@ -1,0 +1,8 @@
+{
+  "id": "HERO",
+  "name": "旅团新人",
+  "weapon": "sword",
+  "unit_type": "foot",
+  "stats": { "hp": 25, "atk": 8, "def": 4, "mov": 4 },
+  "skill_id": "S_INSPIRE"
+}

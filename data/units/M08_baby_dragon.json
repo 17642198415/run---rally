@@ -1,0 +1,12 @@
+{
+  "id": "M08",
+  "name": "幼龙兽",
+  "element": "dragon",
+  "weapon": "none",
+  "unit_type": "flying",
+  "rarity": "rare",
+  "base_capture_rate": 0.18,
+  "stats": { "hp": 26, "atk": 10, "def": 5, "mov": 4 },
+  "skill_id": "S_DRAGON_BREATH",
+  "tags": ["meta_unlock_pool", "rare_pool"]
+}

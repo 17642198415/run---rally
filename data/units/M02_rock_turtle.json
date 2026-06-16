@@ -1,0 +1,12 @@
+{
+  "id": "M02",
+  "name": "岩甲龟",
+  "element": "earth",
+  "weapon": "none",
+  "unit_type": "heavy",
+  "rarity": "common",
+  "base_capture_rate": 0.4,
+  "stats": { "hp": 24, "atk": 5, "def": 7, "mov": 3 },
+  "skill_id": "S_ROCK_SHELL",
+  "tags": ["starter_pool", "tank"]
+}

@@ -1,3 +1,12 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Import metadata（按需重新生成）
+*.import
+
+# 导出配置（含本地路径与密钥，应保持本地）
+export_presets.cfg
+
+# 翻译中间产物
+*.translation

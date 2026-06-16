@@ -1,0 +1,10 @@
+{
+  "id": "S_BERSERK",
+  "name": "狂暴",
+  "effect_type": "atk_buff",
+  "atk_delta": 4,
+  "duration": 2,
+  "cooldown": 99,
+  "target": "self",
+  "range": 0
+}

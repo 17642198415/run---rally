@@ -1,0 +1,9 @@
+{
+  "id": "S_DRAGON_BREATH",
+  "name": "龙息",
+  "effect_type": "damage_mult",
+  "mult": 1.5,
+  "cooldown": 3,
+  "target": "single_enemy",
+  "range": 2
+}

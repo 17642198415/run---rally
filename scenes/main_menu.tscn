@@ -1,26 +1,38 @@
-[gd_scene format=3 uid="uid://bxvoj7y4ifynm"]
+[gd_scene load_steps=2 format=3 uid="uid://bxvoj7y4ifynm"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_main_menu"]
 
 [node name="Control" type="Control" unique_id=1893369158]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -3.0
-offset_right = 7.0
-offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_main_menu")
 
-[node name="Label" type="Label" parent="." unique_id=1659746449]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.065000005
-anchor_bottom = 0.09900001
-offset_left = 500.0
-offset_top = 283.0
-offset_right = 575.12
-offset_bottom = 241.84799
-text = "Run & Rally - 主菜单"
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -160.0
+offset_right = 320.0
+offset_bottom = 160.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=1659746449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+text = "Run & Rally\n\n第 1 章：项目骨架与数据层\n\n编辑器预览：\n- data/units：8 个灵兽 JSON\n- data/skills：10 个技能 JSON\n- scripts/autoload：DataLoader/GameState/SaveManager/MetaManager\n- tests/unit：数据层单元测试\n\n按 F5 运行后会显示 DataLoader 读取结果。"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3

@@ -1,0 +1,9 @@
+{
+  "id": "S_THUNDER_CHARGE",
+  "name": "雷冲",
+  "effect_type": "damage_mult",
+  "mult": 1.35,
+  "cooldown": 3,
+  "target": "single_enemy",
+  "range": 2
+}

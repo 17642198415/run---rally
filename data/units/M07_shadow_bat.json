@@ -1,0 +1,12 @@
+{
+  "id": "M07",
+  "name": "影翼蝠",
+  "element": "shadow",
+  "weapon": "none",
+  "unit_type": "flying",
+  "rarity": "rare",
+  "base_capture_rate": 0.3,
+  "stats": { "hp": 15, "atk": 9, "def": 2, "mov": 5 },
+  "skill_id": "S_SHADOW_DIVE",
+  "tags": ["rare_pool", "flying"]
+}

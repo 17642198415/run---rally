@@ -1,0 +1,12 @@
+{
+  "id": "M01",
+  "name": "火尾狐",
+  "element": "fire",
+  "weapon": "none",
+  "unit_type": "foot",
+  "rarity": "common",
+  "base_capture_rate": 0.45,
+  "stats": { "hp": 18, "atk": 7, "def": 3, "mov": 4 },
+  "skill_id": "S_FIRE_CLAW",
+  "tags": ["starter_pool"]
+}

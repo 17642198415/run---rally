@@ -1,0 +1,12 @@
+{
+  "id": "M06",
+  "name": "刃叶兽",
+  "element": "leaf",
+  "weapon": "none",
+  "unit_type": "foot",
+  "rarity": "common",
+  "base_capture_rate": 0.4,
+  "stats": { "hp": 19, "atk": 7, "def": 4, "mov": 4 },
+  "skill_id": "S_LEAF_SLASH",
+  "tags": ["starter_pool"]
+}

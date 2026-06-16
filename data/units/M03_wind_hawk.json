@@ -1,0 +1,12 @@
+{
+  "id": "M03",
+  "name": "疾风鹰",
+  "element": "wind",
+  "weapon": "none",
+  "unit_type": "flying",
+  "rarity": "common",
+  "base_capture_rate": 0.38,
+  "stats": { "hp": 16, "atk": 6, "def": 2, "mov": 5 },
+  "skill_id": "S_GUST",
+  "tags": ["starter_pool", "flying"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "S_ROCK_SHELL",
+  "name": "岩盾",
+  "effect_type": "def_buff",
+  "def_delta": 2,
+  "duration": 1,
+  "cooldown": 3,
+  "target": "self",
+  "range": 0
+}

@@ -1,0 +1,12 @@
+{
+  "id": "M04",
+  "name": "泉灵蛇",
+  "element": "water",
+  "weapon": "none",
+  "unit_type": "foot",
+  "rarity": "common",
+  "base_capture_rate": 0.42,
+  "stats": { "hp": 17, "atk": 6, "def": 3, "mov": 4 },
+  "skill_id": "S_AQUA_BITE",
+  "tags": ["starter_pool"]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "S_LEAF_SLASH",
+  "name": "叶斩",
+  "effect_type": "damage_mult",
+  "mult": 1.25,
+  "cooldown": 2,
+  "target": "single_enemy",
+  "range": 1
+}

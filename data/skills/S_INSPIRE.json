@@ -1,0 +1,10 @@
+{
+  "id": "S_INSPIRE",
+  "name": "鼓舞",
+  "effect_type": "atk_buff",
+  "atk_delta": 2,
+  "duration": 1,
+  "cooldown": 3,
+  "target": "single_ally",
+  "range": 2
+}
