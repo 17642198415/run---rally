@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/capture_prompt.gd" id="1_capture_prompt"]
+
+[node name="CapturePrompt" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -120.0
+offset_right = 200.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_capture_prompt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "捕捉目标：—"
+horizontal_alignment = 1
+
+[node name="HpLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "HP --/-- (--%)"
+horizontal_alignment = 1
+
+[node name="RateLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "成功率：[—]"
+horizontal_alignment = 1
+
+[node name="BallsLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "剩余捕捉球：—"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 14
+
+[node name="ConfirmBtn" type="Button" parent="Panel/VBox/Buttons"]
+layout_mode = 2
+text = "确认捕捉"
+
+[node name="CancelBtn" type="Button" parent="Panel/VBox/Buttons"]
+layout_mode = 2
+text = "取消"

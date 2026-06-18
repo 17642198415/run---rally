@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "tiles": {
+    "plain":  { "path": "tiles/plain.png",  "size": [32, 32], "fallback_color": "#7FB069", "fallback_glyph": "" },
+    "forest": { "path": "tiles/forest.png", "size": [32, 32], "fallback_color": "#3F7A3F", "fallback_glyph": "木" },
+    "water":  { "path": "tiles/water.png",  "size": [32, 32], "fallback_color": "#3D6FA8", "fallback_glyph": "水" },
+    "wall":   { "path": "tiles/wall.png",   "size": [32, 32], "fallback_color": "#6E5B45", "fallback_glyph": "墙" },
+    "deploy": { "path": "tiles/deploy.png", "size": [32, 32], "fallback_color": "#4FA77F", "fallback_glyph": "" }
+  },
+  "units": {
+    "HERO":      { "path": "units/hero.png",      "size": [64, 64], "fallback_glyph": "旅", "fallback_bg": "#3A6BD8" },
+    "M01":       { "path": "units/m01.png",       "size": [64, 64], "fallback_glyph": "狐", "fallback_bg": "#C2562B" },
+    "M02":       { "path": "units/m02.png",       "size": [64, 64], "fallback_glyph": "龟", "fallback_bg": "#5C8A4D" },
+    "M03":       { "path": "units/m03.png",       "size": [64, 64], "fallback_glyph": "鹰", "fallback_bg": "#8B7D52" },
+    "M04":       { "path": "units/m04.png",       "size": [64, 64], "fallback_glyph": "蛇", "fallback_bg": "#6E5B91" },
+    "M05":       { "path": "units/m05.png",       "size": [64, 64], "fallback_glyph": "犬", "fallback_bg": "#A65A3F" },
+    "M06":       { "path": "units/m06.png",       "size": [64, 64], "fallback_glyph": "鼠", "fallback_bg": "#807070" },
+    "M07":       { "path": "units/m07.png",       "size": [64, 64], "fallback_glyph": "鲨", "fallback_bg": "#3D5C7A" },
+    "M08":       { "path": "units/m08.png",       "size": [64, 64], "fallback_glyph": "猫", "fallback_bg": "#A88A4F" },
+    "BOSS_MERC": { "path": "units/boss_merc.png", "size": [64, 64], "fallback_glyph": "佣", "fallback_bg": "#8B2F2F" }
+  },
+  "icons": {
+    "move":     { "path": "icons/move.png",     "size": [16, 16], "fallback_glyph": "→", "fallback_bg": "#3A6BD8" },
+    "attack":   { "path": "icons/attack.png",   "size": [16, 16], "fallback_glyph": "刀", "fallback_bg": "#A93A3A" },
+    "skill":    { "path": "icons/skill.png",    "size": [16, 16], "fallback_glyph": "★", "fallback_bg": "#7B4FB8" },
+    "capture":  { "path": "icons/capture.png",  "size": [16, 16], "fallback_glyph": "球", "fallback_bg": "#3FAEB8" },
+    "wait":     { "path": "icons/wait.png",     "size": [16, 16], "fallback_glyph": "歇", "fallback_bg": "#5C5E66" },
+    "end_turn": { "path": "icons/end_turn.png", "size": [16, 16], "fallback_glyph": "终", "fallback_bg": "#3F8A5F" },
+    "confirm":  { "path": "icons/confirm.png",  "size": [16, 16], "fallback_glyph": "✔", "fallback_bg": "#3F7BC9" }
+  },
+  "ui": {
+    "panel_bg":    { "path": "ui/panel_bg.png",    "size": [16, 16], "fallback_color": "#212733" },
+    "avatar_ring": { "path": "ui/avatar_ring.png", "size": [64, 64], "fallback_color": "#FFFFFF" },
+    "card_shadow": { "path": "ui/card_shadow.png", "size": [16, 16], "fallback_color": "#000000" }
+  }
+}

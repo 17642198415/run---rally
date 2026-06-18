@@ -1,0 +1,9 @@
+{
+  "id": "CAPTURE_CONFIG",
+  "event_bonus_default": 0.0,
+  "tier_thresholds": {
+    "high": 0.5,
+    "mid": 0.25,
+    "low": 0.12
+  }
+}

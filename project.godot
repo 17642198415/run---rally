@@ -21,6 +21,10 @@ DataLoader="*res://scripts/autoload/data_loader.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 MetaManager="*res://scripts/autoload/meta_manager.gd"
+BestiaryManager="*res://scripts/managers/bestiary_manager.gd"
+PartyManager="*res://scripts/managers/party_manager.gd"
+CampaignManager="*res://scripts/campaign/campaign_manager.gd"
+ArtLoader="*res://scripts/art/art_loader.gd"
 
 [display]
 

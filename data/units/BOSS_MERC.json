@@ -1,0 +1,13 @@
+{
+  "id": "BOSS_MERC",
+  "name": "堡主佣兵",
+  "element": "none",
+  "weapon": "axe",
+  "unit_type": "heavy",
+  "rarity": "boss",
+  "base_capture_rate": 0.0,
+  "stats": { "hp": 45, "atk": 12, "def": 8, "mov": 3 },
+  "skill_id": "S_BERSERK",
+  "ai_profile": "boss_default",
+  "tags": ["boss", "stage_03_boss"]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "DEBUG_01",
+  "map_template": "test_grid",
+  "player_units": [
+    { "template": "HERO", "deploy_index": 0 }
+  ],
+  "enemy_units": [
+    { "template": "M01", "spawn": { "x": 8, "y": 4 } },
+    { "template": "M02", "spawn": { "x": 8, "y": 5 } }
+  ],
+  "win_condition": "annihilate",
+  "player": {
+    "balls": 3
+  },
+  "player_ball_count": 3
+}

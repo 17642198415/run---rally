@@ -1,0 +1,21 @@
+{
+  "id": "stage_03",
+  "name": "古堡要塞",
+  "map_template": "T_FORT",
+  "player": {
+    "deploy_max": 4,
+    "balls": 4,
+    "party_source": "campaign_setup"
+  },
+  "player_ball_count": 4,
+  "player_units": [],
+  "enemy_units": [
+    { "template": "BOSS_MERC", "spawn": { "x": 8, "y": 4 } },
+    { "template": "M07", "spawn": { "x": 7, "y": 3 } },
+    { "template": "M07", "spawn": { "x": 7, "y": 6 } },
+    { "template": "M08", "spawn": { "x": 8, "y": 7 } }
+  ],
+  "win_condition": "annihilate",
+  "unlock_next": "",
+  "ai_profile": "boss_default"
+}
