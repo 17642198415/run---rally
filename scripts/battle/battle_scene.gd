@@ -44,6 +44,9 @@ func _begin_stage() -> void:
 	var loader: Node = get_node("/root/DataLoader")
 	loader.load_all()
 	var gs: Node = get_node("/root/GameState")
+	if gs.current_mode == gs.GameMode.ROGUELIKE:
+		_begin_roguelike_stage(loader, gs)
+		return
 	if gs.current_mode == gs.GameMode.CAMPAIGN and not String(gs.stage_id).is_empty():
 		stage_id = String(gs.stage_id)
 	stage_data = loader.get_stage(stage_id)
@@ -61,6 +64,43 @@ func _begin_stage() -> void:
 	_mark_stage_enemies_discovered()
 	grid_controller.begin_stage(grid, deploy_phase)
 	_update_ui()
+
+func _begin_roguelike_stage(loader: Node, gs: Node) -> void:
+	var ctx: Dictionary = gs.battle_context as Dictionary
+	stage_id = "ROGUELIKE"
+	stage_data = {
+		"id": "ROGUELIKE",
+		"map_template": String(ctx.get("map_template", "T_PLAIN")),
+		"player": {
+			"deploy_max": 4,
+			"party_source": "campaign_setup"
+		},
+		"enemy_units": ctx.get("enemies", []),
+		"ai_profile": "default"
+	}
+	var grid: RefCounted = loader.load_stage_map(stage_data)
+	if grid == null:
+		push_error("Failed to load roguelike map %s" % String(ctx.get("map_template", "")))
+		return
+	deploy_phase.setup(stage_data, grid)
+	turn_manager.reset()
+	_sync_game_state(TurnManager.TurnPhase.DEPLOY)
+	var rm: Node = get_node("/root/RunManager")
+	var run_state: Resource = rm.get_state()
+	var balls: int = 3 if run_state == null else int(run_state.balls)
+	gs.set_battle_balls(stage_id, balls)
+	_mark_roguelike_enemies_discovered(ctx.get("enemies", []) as Array)
+	grid_controller.begin_stage(grid, deploy_phase)
+	_update_ui()
+
+func _mark_roguelike_enemies_discovered(enemies: Array) -> void:
+	var bestiary: Node = get_node_or_null("/root/BestiaryManager")
+	if bestiary == null:
+		return
+	for enemy_def in enemies:
+		var template_id: String = String((enemy_def as Dictionary).get("template", ""))
+		if not template_id.is_empty():
+			bestiary.mark_discovered(template_id)
 
 func _init_balls_for_stage() -> void:
 	var balls: int = 3
@@ -189,15 +229,26 @@ func _resolve_capture() -> void:
 	on_unit_action_completed(attacker)
 
 func _apply_successful_capture(target: RefCounted) -> void:
-	var party: Node = get_node_or_null("/root/PartyManager")
+	var gs: Node = get_node_or_null("/root/GameState")
 	var bestiary: Node = get_node_or_null("/root/BestiaryManager")
-	if party != null and party.can_accept():
-		party.add_capture(
-			String(target.template_id),
-			int(target.max_hp),
-			int(target.max_hp),
-			String(target.skill_id)
-		)
+	if gs != null and gs.current_mode == gs.GameMode.ROGUELIKE:
+		var rm: Node = get_node_or_null("/root/RunManager")
+		if rm != null:
+			rm.add_capture_to_reserve(
+				String(target.template_id),
+				int(target.max_hp),
+				int(target.max_hp),
+				String(target.skill_id)
+			)
+	else:
+		var party: Node = get_node_or_null("/root/PartyManager")
+		if party != null and party.can_accept():
+			party.add_capture(
+				String(target.template_id),
+				int(target.max_hp),
+				int(target.max_hp),
+				String(target.skill_id)
+			)
 	if bestiary != null:
 		bestiary.mark_caught(String(target.template_id))
 	grid_controller.remove_captured_unit(target)
@@ -211,6 +262,12 @@ func _persist_save() -> void:
 func _assemble_save_dict() -> Dictionary:
 	var save_mgr: Node = get_node_or_null("/root/SaveManager")
 	var data: Dictionary = save_mgr.get_default_save() if save_mgr != null else {}
+	if save_mgr != null:
+		var existing: Dictionary = save_mgr.load_meta()
+		if existing.has("run"):
+			data["run"] = existing.get("run", {})
+		if existing.has("stats"):
+			data["stats"] = existing.get("stats", {})
 	var bestiary: Node = get_node_or_null("/root/BestiaryManager")
 	if bestiary != null:
 		data["bestiary"] = bestiary.to_dict()
@@ -220,6 +277,14 @@ func _assemble_save_dict() -> Dictionary:
 	var campaign: Node = get_node_or_null("/root/CampaignManager")
 	if campaign != null:
 		data["campaign"] = campaign.to_dict()
+	var rm: Node = get_node_or_null("/root/RunManager")
+	if rm != null:
+		var run_state: Resource = rm.get_state()
+		if run_state != null:
+			data["run"] = {
+				"active": true,
+				"state": run_state.serialize()
+			}
 	return data
 
 func _get_balls() -> int:
@@ -229,6 +294,11 @@ func _get_balls() -> int:
 	return int(gs.get_balls_remaining())
 
 func _get_event_bonus() -> float:
+	var gs: Node = get_node_or_null("/root/GameState")
+	if gs != null and gs.current_mode == gs.GameMode.ROGUELIKE:
+		var ctx: Dictionary = gs.battle_context as Dictionary
+		if ctx.has("capture_event_bonus"):
+			return float(ctx.get("capture_event_bonus", 0.0))
 	var loader: Node = get_node_or_null("/root/DataLoader")
 	if loader == null:
 		return 0.0
@@ -283,7 +353,77 @@ func _on_battle_end() -> void:
 		data["stats"] = stats
 		save_mgr.save_meta(data)
 	_handle_campaign_battle_end(result)
+	_handle_roguelike_battle_end(result)
 	_update_ui()
+
+func _handle_roguelike_battle_end(result: String) -> void:
+	var gs: Node = get_node_or_null("/root/GameState")
+	if gs == null or gs.current_mode != gs.GameMode.ROGUELIKE:
+		return
+	var ctx: Dictionary = gs.battle_context as Dictionary
+	var node_id: String = String(ctx.get("run_node_id", ""))
+	var payload: Dictionary = _build_roguelike_payload(ctx)
+	var rm: Node = get_node_or_null("/root/RunManager")
+	if rm == null:
+		return
+	var outcome: Dictionary = rm.consume_battle_result(node_id, result, payload)
+	var return_path: String = String(gs.return_scene_path)
+	if return_path.is_empty():
+		return_path = "res://scenes/roguelike/route_map.tscn"
+	gs.clear_battle_context()
+	get_tree().create_timer(1.5).timeout.connect(func() -> void:
+		if not is_inside_tree():
+			return
+		if bool(outcome.get("pending_rewards", false)):
+			get_tree().change_scene_to_file("res://scenes/roguelike/reward_pick.tscn")
+		elif bool(outcome.get("run_ended", false)):
+			get_tree().change_scene_to_file("res://scenes/roguelike/run_summary.tscn")
+		else:
+			get_tree().change_scene_to_file(return_path)
+	)
+
+func _build_roguelike_payload(ctx: Dictionary) -> Dictionary:
+	var deploy_list: Array = ctx.get("deploy_list", []) as Array
+	var deploy_unit_ids: Array = []
+	for entry_v in deploy_list:
+		deploy_unit_ids.append(String((entry_v as Dictionary).get("unit_id", "")))
+
+	var survivors: Array = []
+	var hero_dead: bool = false
+	var hero_found: bool = false
+	for unit in grid_controller.units:
+		if not bool(unit.is_player):
+			continue
+		if String(unit.template_id) == "HERO":
+			hero_found = true
+			if int(unit.hp) <= 0:
+				hero_dead = true
+		if int(unit.hp) <= 0:
+			continue
+		survivors.append({
+			"unit_id": String(unit.unit_id),
+			"template_id": String(unit.template_id),
+			"hp": int(unit.hp),
+			"max_hp": int(unit.max_hp),
+			"skill_id": String(unit.skill_id)
+		})
+	if hero_found and not hero_dead:
+		var hero_listed: bool = false
+		for survivor_v in survivors:
+			if String((survivor_v as Dictionary).get("template_id", "")) == "HERO":
+				hero_listed = true
+				break
+		if not hero_listed:
+			hero_dead = true
+
+	return {
+		"is_boss": bool(ctx.get("is_boss", false)),
+		"is_elite": bool(ctx.get("is_elite", false)),
+		"hero_dead": hero_dead,
+		"balls_remaining": _get_balls(),
+		"deploy_unit_ids": deploy_unit_ids,
+		"survivors": survivors
+	}
 
 func _handle_campaign_battle_end(result: String) -> void:
 	var gs: Node = get_node_or_null("/root/GameState")

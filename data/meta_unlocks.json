@@ -1,0 +1,26 @@
+{
+  "id": "meta_unlocks",
+  "unlocks": [
+    {
+      "id": "META_BALL",
+      "name": "行囊扩充",
+      "desc": "新征途起始捕获球 +1",
+      "condition": { "type": "or", "runs_won": 1, "deepest_layer": 5 },
+      "effect": { "start_balls_bonus": 1 }
+    },
+    {
+      "id": "META_M05",
+      "name": "雷角鹿入池",
+      "desc": "随机战与援军可出现 M05",
+      "condition": { "type": "bestiary", "unit_id": "M05", "state": "seen" },
+      "effect": { "add_to_pool": "M05" }
+    },
+    {
+      "id": "META_M08",
+      "name": "幼龙兽入池",
+      "desc": "随机战与援军可出现 M08",
+      "condition": { "type": "bestiary", "unit_id": "M08", "state": "seen" },
+      "effect": { "add_to_pool": "M08" }
+    }
+  ]
+}

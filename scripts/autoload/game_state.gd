@@ -8,6 +8,7 @@ var current_battle_phase: BattlePhase = BattlePhase.DEPLOY
 var stage_id := ""
 var battle_context: Dictionary = {}
 var return_scene_path: String = ""
+var pending_event_node: Dictionary = {}
 var current_battle: Dictionary = {
 	"stage_id": "",
 	"balls_remaining": 0
@@ -21,6 +22,7 @@ func reset() -> void:
 	stage_id = ""
 	battle_context = {}
 	return_scene_path = ""
+	pending_event_node = {}
 	current_battle = {"stage_id": "", "balls_remaining": 0}
 
 func start_campaign_battle(target_stage_id: String, deploy_list: Array) -> void:
@@ -30,6 +32,52 @@ func start_campaign_battle(target_stage_id: String, deploy_list: Array) -> void:
 		"deploy_list": deploy_list.duplicate(true)
 	}
 	return_scene_path = "res://scenes/campaign/stage_select.tscn"
+
+func set_pending_event_node(node_id: String, layer: int, node_type: String) -> void:
+	pending_event_node = {
+		"run_node_id": node_id,
+		"layer": layer,
+		"type": node_type
+	}
+
+func prepare_roguelike_node(
+	node_id: String,
+	enemies: Array,
+	map_template: String,
+	is_elite: bool,
+	is_boss: bool,
+	capture_event_bonus: float = -1.0
+) -> void:
+	current_mode = GameMode.ROGUELIKE
+	battle_context = {
+		"run_node_id": node_id,
+		"enemies": enemies.duplicate(true),
+		"map_template": map_template,
+		"is_elite": is_elite,
+		"is_boss": is_boss
+	}
+	if capture_event_bonus >= 0.0:
+		battle_context["capture_event_bonus"] = capture_event_bonus
+	return_scene_path = "res://scenes/roguelike/route_map.tscn"
+
+func start_roguelike_battle(
+	node_id: String,
+	enemies: Array,
+	map_template: String,
+	is_elite: bool,
+	is_boss: bool,
+	deploy_list: Array
+) -> void:
+	current_mode = GameMode.ROGUELIKE
+	battle_context = {
+		"run_node_id": node_id,
+		"enemies": enemies.duplicate(true),
+		"map_template": map_template,
+		"is_elite": is_elite,
+		"is_boss": is_boss,
+		"deploy_list": deploy_list.duplicate(true)
+	}
+	return_scene_path = "res://scenes/roguelike/route_map.tscn"
 
 func clear_battle_context() -> void:
 	battle_context = {}

@@ -1,12 +1,25 @@
-# Run all Godot unit tests from project root or tests folder.
+# Run all Godot unit + UI tests from project root or tests folder.
 $ErrorActionPreference = "Continue"
 $godot = "D:\develop\Godot_v4.6.3-stable_win64.exe"
 $testsDir = $PSScriptRoot
 $projectRoot = Split-Path $testsDir -Parent
-$testFiles = Get-ChildItem -Path "$testsDir\unit\test_*.gd" | Sort-Object Name
+$unitFiles = Get-ChildItem -Path "$testsDir\unit\test_*.gd" | Sort-Object Name
+$uiFiles = @()
+$uiDir = Join-Path $testsDir "ui"
+if (Test-Path $uiDir) {
+    $uiFiles = Get-ChildItem -Path "$uiDir\test_*.gd" | Sort-Object Name
+}
+$testFiles = @($unitFiles) + @($uiFiles)
 
 if (-not (Test-Path $godot)) {
     Write-Error "Godot not found at $godot"
+}
+
+# Register global class_name scripts (MenuStyle, RunState) for headless scene tests.
+$importMarker = Join-Path $projectRoot ".godot\global_script_class_cache.cfg"
+if (-not (Test-Path $importMarker) -or (Get-Content $importMarker -Raw) -match 'list=\[\]') {
+    Write-Host "Running Godot import (global class registration)..."
+    & $godot --headless --path $projectRoot --import 2>&1 | Out-Null
 }
 
 $failed = @()

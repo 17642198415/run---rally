@@ -1,0 +1,15 @@
+{
+  "id": "layer_pools",
+  "layers": [
+    { "layer": 1, "pool": ["battle", "battle", "capture_event"], "pick_count": 2, "choose": 1 },
+    { "layer": 2, "pool": ["battle", "rest"], "pick_count": 2, "choose": 1 },
+    { "layer": 3, "pool": ["battle", "elite", "shop"], "pick_count": 3, "choose": 1 },
+    { "layer": 4, "pool": ["battle", "capture_event"], "pick_count": 2, "choose": 1 },
+    { "layer": 5, "pool": ["rest", "elite", "battle"], "pick_count": 3, "choose": 1 },
+    { "layer": 6, "pool": ["boss"], "pick_count": 1, "choose": 1 }
+  ],
+  "constraints": [
+    { "rule": "layer_3_or_5_has_elite_or_shop" },
+    { "rule": "layer_6_always_boss" }
+  ]
+}

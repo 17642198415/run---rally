@@ -1,0 +1,55 @@
+{
+  "id": "reward_pool",
+  "boss_weight_bonus": ["R_ATK", "R_SKILL", "R_RESCUE"],
+  "rewards": [
+    {
+      "id": "R_BALL",
+      "name": "补给球",
+      "desc": "捕获球 +1",
+      "weight": 10,
+      "effect": { "balls": 1 }
+    },
+    {
+      "id": "R_HEAL",
+      "name": "整备",
+      "desc": "全队恢复 25% HP",
+      "weight": 10,
+      "effect": { "heal_pct": 0.25 }
+    },
+    {
+      "id": "R_ATK",
+      "name": "战意",
+      "desc": "指定灵兽 ATK +2",
+      "weight": 10,
+      "effect": { "stat": "atk", "delta": 2, "target": "one_pet" }
+    },
+    {
+      "id": "R_HP",
+      "name": "坚韧",
+      "desc": "指定灵兽 HP +5",
+      "weight": 10,
+      "effect": { "stat": "hp", "delta": 5, "target": "one_pet" }
+    },
+    {
+      "id": "R_SKILL",
+      "name": "觉醒",
+      "desc": "指定灵兽技能 CD -1",
+      "weight": 10,
+      "effect": { "skill_cd": -1, "target": "one_pet" }
+    },
+    {
+      "id": "R_COIN",
+      "name": "赏金",
+      "desc": "征途币 +15",
+      "weight": 10,
+      "effect": { "coins": 15 }
+    },
+    {
+      "id": "R_RESCUE",
+      "name": "援军",
+      "desc": "招募随机灵兽（50% HP）",
+      "weight": 10,
+      "effect": { "random_pet": "unlocked_pool", "hp_pct": 0.5 }
+    }
+  ]
+}

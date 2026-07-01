@@ -1,0 +1,11 @@
+{
+  "id": "node_types",
+  "types": {
+    "battle":        { "display": "普通战", "icon": "⚔",  "color_hex": "#DCDCDC" },
+    "elite":         { "display": "精英战", "icon": "★",  "color_hex": "#D9534F" },
+    "rest":          { "display": "休息",   "icon": "🏕", "color_hex": "#5CB85C" },
+    "shop":          { "display": "商店",   "icon": "🛒", "color_hex": "#5BC0DE" },
+    "capture_event": { "display": "捕捉",   "icon": "◎",  "color_hex": "#9C66B5" },
+    "boss":          { "display": "BOSS",  "icon": "♛",  "color_hex": "#F0AD4E" }
+  }
+}

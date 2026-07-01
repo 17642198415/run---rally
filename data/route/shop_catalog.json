@@ -1,0 +1,30 @@
+{
+  "id": "shop_catalog",
+  "items": [
+    {
+      "id": "ball_pack",
+      "display": "捕获球 +1",
+      "cost": 15,
+      "effect_type": "add_ball",
+      "effect_value": 1,
+      "weight": 40
+    },
+    {
+      "id": "camp_heal",
+      "display": "全队恢复 20% HP",
+      "cost": 10,
+      "effect_type": "heal_all_pct",
+      "effect_value": 20,
+      "weight": 35
+    },
+    {
+      "id": "recruit_slime",
+      "display": "招募随机灵兽",
+      "cost": 25,
+      "effect_type": "add_random_reserve",
+      "effect_value": 0,
+      "weight": 25,
+      "templates": ["M01", "M02", "M03", "M04"]
+    }
+  ]
+}

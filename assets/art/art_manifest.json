@@ -29,8 +29,10 @@
     "confirm":  { "path": "icons/confirm.png",  "size": [16, 16], "fallback_glyph": "✔", "fallback_bg": "#3F7BC9" }
   },
   "ui": {
-    "panel_bg":    { "path": "ui/panel_bg.png",    "size": [16, 16], "fallback_color": "#212733" },
-    "avatar_ring": { "path": "ui/avatar_ring.png", "size": [64, 64], "fallback_color": "#FFFFFF" },
-    "card_shadow": { "path": "ui/card_shadow.png", "size": [16, 16], "fallback_color": "#000000" }
+    "panel_bg":      { "path": "ui/panel_bg.png",      "size": [16, 16], "fallback_color": "#212733" },
+    "avatar_ring":   { "path": "ui/avatar_ring.png",   "size": [64, 64], "fallback_color": "#FFFFFF" },
+    "card_shadow":   { "path": "ui/card_shadow.png",   "size": [16, 16], "fallback_color": "#000000" },
+    "stage_locked":  { "path": "ui/stage_locked.png",  "size": [16, 16], "fallback_color": "#555960" },
+    "stage_cleared": { "path": "ui/stage_cleared.png", "size": [16, 16], "fallback_color": "#D9A64D" }
   }
 }

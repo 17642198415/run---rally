@@ -26,6 +26,7 @@ func mark_discovered(template_id: String) -> void:
 	var entry: Dictionary = entries.get(template_id, {"discovered": false, "caught": false})
 	entry["discovered"] = true
 	entries[template_id] = entry
+	_notify_meta_unlocks()
 
 func mark_caught(template_id: String) -> void:
 	if template_id.is_empty():
@@ -34,6 +35,7 @@ func mark_caught(template_id: String) -> void:
 	entry["discovered"] = true
 	entry["caught"] = true
 	entries[template_id] = entry
+	_notify_meta_unlocks()
 
 func is_discovered(template_id: String) -> bool:
 	var entry: Dictionary = entries.get(template_id, {})
@@ -74,3 +76,15 @@ func _save_manager() -> Node:
 	if tree == null:
 		return null
 	return tree.root.get_node_or_null("SaveManager")
+
+func _notify_meta_unlocks() -> void:
+	var mm: Node = _meta_manager()
+	if mm == null:
+		return
+	mm.evaluate_after_bestiary_change()
+
+func _meta_manager() -> Node:
+	var tree: SceneTree = Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return null
+	return tree.root.get_node_or_null("MetaManager")

@@ -1,0 +1,15 @@
+{
+  "id": "layer_6_boss",
+  "groups": [
+    {
+      "weight": 100,
+      "map_template": "T_FORT",
+      "enemies": [
+        { "template": "BOSS_MERC", "spawn": { "x": 8, "y": 4 } },
+        { "template": "M07",       "spawn": { "x": 7, "y": 3 } },
+        { "template": "M07",       "spawn": { "x": 7, "y": 6 } },
+        { "template": "M08",       "spawn": { "x": 8, "y": 7 } }
+      ]
+    }
+  ]
+}

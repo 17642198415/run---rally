@@ -25,6 +25,7 @@ BestiaryManager="*res://scripts/managers/bestiary_manager.gd"
 PartyManager="*res://scripts/managers/party_manager.gd"
 CampaignManager="*res://scripts/campaign/campaign_manager.gd"
 ArtLoader="*res://scripts/art/art_loader.gd"
+RunManager="*res://scripts/autoload/run_manager.gd"
 
 [display]
 

@@ -1,0 +1,31 @@
+{
+  "id": "layer_1_2_normal",
+  "groups": [
+    {
+      "weight": 50,
+      "map_template": "T_PLAIN",
+      "enemies": [
+        { "template": "M01", "spawn": { "x": 7, "y": 3 } },
+        { "template": "M01", "spawn": { "x": 7, "y": 6 } },
+        { "template": "M02", "spawn": { "x": 8, "y": 4 } }
+      ]
+    },
+    {
+      "weight": 30,
+      "map_template": "T_WET",
+      "enemies": [
+        { "template": "M04", "spawn": { "x": 7, "y": 4 } },
+        { "template": "M04", "spawn": { "x": 7, "y": 5 } },
+        { "template": "M01", "spawn": { "x": 8, "y": 6 } }
+      ]
+    },
+    {
+      "weight": 20,
+      "map_template": "T_FOREST",
+      "enemies": [
+        { "template": "M03", "spawn": { "x": 7, "y": 3 } },
+        { "template": "M06", "spawn": { "x": 8, "y": 5 } }
+      ]
+    }
+  ]
+}

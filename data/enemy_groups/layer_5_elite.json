@@ -1,0 +1,25 @@
+{
+  "id": "layer_5_elite",
+  "groups": [
+    {
+      "weight": 60,
+      "map_template": "T_MIX",
+      "enemies": [
+        { "template": "M05", "spawn": { "x": 7, "y": 3 } },
+        { "template": "M06", "spawn": { "x": 8, "y": 6 } },
+        { "template": "M07", "spawn": { "x": 8, "y": 4 } },
+        { "template": "M08", "spawn": { "x": 8, "y": 6 } }
+      ]
+    },
+    {
+      "weight": 40,
+      "map_template": "T_FORT",
+      "enemies": [
+        { "template": "M08", "spawn": { "x": 7, "y": 3 } },
+        { "template": "M07", "spawn": { "x": 7, "y": 6 } },
+        { "template": "M05", "spawn": { "x": 8, "y": 4 } },
+        { "template": "M06", "spawn": { "x": 8, "y": 5 } }
+      ]
+    }
+  ]
+}

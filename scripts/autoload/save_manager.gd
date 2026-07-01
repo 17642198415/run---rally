@@ -1,5 +1,7 @@
 extends Node
 
+const MetaManagerScript = preload("res://scripts/autoload/meta_manager.gd")
+
 var SAVE_PATH: String = "user://save_meta.json"
 
 func get_default_save() -> Dictionary:
@@ -13,6 +15,10 @@ func get_default_save() -> Dictionary:
 		"campaign": {},
 		"meta": {
 			"unlocked": []
+		},
+		"run": {
+			"active": false,
+			"state": null
 		}
 	}
 
@@ -38,6 +44,8 @@ func merge_with_defaults(data: Dictionary) -> Dictionary:
 			if not src.has(sub_key):
 				src[sub_key] = def_dict[sub_key]
 		merged[key] = src
+	if merged.has("stats") and typeof(merged["stats"]) == TYPE_DICTIONARY:
+		merged["stats"] = MetaManagerScript.normalize_stats(merged["stats"] as Dictionary)
 	return merged
 
 func load_meta() -> Dictionary:
@@ -64,3 +72,8 @@ func save_meta(data: Dictionary) -> bool:
 
 	file.store_string(JSON.stringify(data, "  "))
 	return true
+
+func reset_to_default_for_tests() -> Dictionary:
+	var defaults: Dictionary = get_default_save()
+	save_meta(defaults)
+	return defaults
